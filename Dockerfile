@@ -12,7 +12,7 @@ COPY run-services.sh /run-services.sh
 COPY dist/buildagent /opt/buildagent
 
 RUN useradd -m buildagent && \
-    chmod +x /run-agent.sh /run-services.sh
+    chmod +x /run-agent.sh /run-services.sh && sync
 
 CMD ["/run-services.sh"]
 
