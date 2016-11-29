@@ -6,7 +6,7 @@ for entry in /services/*.sh
 do
   echo $entry
   if [ -f $entry ]; then
-      chmod +x $entry && sync
+      chmod +x $entry; sync;
       $entry
   fi
 done
