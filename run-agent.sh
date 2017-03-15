@@ -56,9 +56,9 @@ do
    sleep 1
 done
 
-trap "${AGENT_DIST}/bin/agent.sh stop" SIGINT SIGTERM SIGHUP
+trap "${AGENT_DIST}/bin/agent.sh stop;exit 0;" SIGINT SIGTERM SIGHUP
 
 touch /root/anchor
 
-tail -qf ${LOG_DIR}/teamcity-agent.log /root/anchor &
+tail -qF ${LOG_DIR}/teamcity-agent.log /root/anchor &
 wait
