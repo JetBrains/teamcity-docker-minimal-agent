@@ -12,4 +12,5 @@ do
 done
 
 echo '/run-agent.sh'
+
 exec /run-agent.sh
