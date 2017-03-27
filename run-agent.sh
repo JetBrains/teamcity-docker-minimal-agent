@@ -34,17 +34,16 @@ chmod +x ${AGENT_DIST}/bin/*.sh; check; sync
 
 rm -f ${LOG_DIR}/*.pid
 
-if [ "${SERVER_URL}" ]; then
-   echo "TeamCity URL is provided: ${SERVER_URL}"
-else
-   echo "TeamCity URL is not provided, but is required."
-   exit 1
-fi
-
 if [ -f ${CONFIG_DIR}/buildAgent.properties ] ; then
    echo "File buildAgent.properties was found in ${CONFIG_DIR}" ;
 else
    echo "Will create new buildAgent.properties using distributive" ;
+   if [[ -n "${SERVER_URL}" ]]; then
+      echo "TeamCity URL is provided: ${SERVER_URL}"
+   else
+      echo "TeamCity URL is not provided, but is required."
+      exit 1
+   fi
    prepare_conf
 fi
 
