@@ -30,7 +30,7 @@ CONFIG_DIR=/data/teamcity_agent/conf
 
 LOG_DIR=/opt/buildagent/logs
 
-chmod +x ${AGENT_DIST}/bin/*.sh; check
+chmod +x ${AGENT_DIST}/bin/*.sh; check; sync
 
 rm -f ${LOG_DIR}/*.pid
 
