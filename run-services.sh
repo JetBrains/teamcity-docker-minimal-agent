@@ -12,4 +12,4 @@ do
 done
 
 echo '/run-agent.sh'
-exec '/run-server.sh'
+exec '/run-agent.sh'
