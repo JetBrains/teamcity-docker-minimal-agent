@@ -8,19 +8,25 @@ check() {
 }
 
 configure() {
-  if [ $2 ]; then
-    echo "run agent.sh configure" $1 $2
-    ${AGENT_DIST}/bin/agent.sh configure $1 $2; check
+  if [[ $# -gt 0 ]]; then
+    echo "run agent.sh configure" $*
+    ${AGENT_DIST}/bin/agent.sh configure $*; check
   fi
+}
+
+reconfigure() {
+    local opts=""
+    [[ -n "${SERVER_URL}" ]] && opts="$opts --server-url \"${SERVER_URL}\""
+    [[ -n "${AGENT_TOKEN}" ]] && opts="$opts --auth-token \"${AGENT_TOKEN}\""
+    [[ -n "${AGENT_NAME}" ]]  && opts="$opts --name \"${AGENT_NAME}\""
+    [[ -n "$opts" ]] && (configure $opts; echo "File buildAgent.properties was updated")
 }
 
 prepare_conf() {
     echo "Will prepare agent config" ;
     cp -p ${AGENT_DIST}/conf_dist/*.* ${CONFIG_DIR}/; check
     cp -p ${CONFIG_DIR}/buildAgent.dist.properties ${CONFIG_DIR}/buildAgent.properties; check
-    configure --server-url ${SERVER_URL}
-    configure --auth-token ${AGENT_TOKEN}
-    configure --name ${AGENT_NAME}
+    reconfigure
     echo "File buildAgent.properties was created and updated" ;
 }
 
@@ -36,6 +42,7 @@ rm -f ${LOG_DIR}/*.pid
 
 if [ -f ${CONFIG_DIR}/buildAgent.properties ] ; then
    echo "File buildAgent.properties was found in ${CONFIG_DIR}" ;
+   reconfigure
 else
    echo "Will create new buildAgent.properties using distributive" ;
    if [[ -n "${SERVER_URL}" ]]; then
