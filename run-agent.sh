@@ -16,9 +16,9 @@ configure() {
 
 reconfigure() {
     local opts=""
-    [[ -n "${SERVER_URL}" ]] && opts="$opts --server-url \"${SERVER_URL}\""
-    [[ -n "${AGENT_TOKEN}" ]] && opts="$opts --auth-token \"${AGENT_TOKEN}\""
-    [[ -n "${AGENT_NAME}" ]]  && opts="$opts --name \"${AGENT_NAME}\""
+    [[ -n "${SERVER_URL}" ]] && opts="$opts --server-url ${SERVER_URL}"
+    [[ -n "${AGENT_TOKEN}" ]] && opts="$opts --auth-token ${AGENT_TOKEN}"
+    [[ -n "${AGENT_NAME}" ]]  && opts="$opts --name ${AGENT_NAME}"
     # Using sed to strip double quotes produced by docker-compose
     [[ -n "$opts" ]] && (configure $(echo "${opts}" | sed -e 's/""/"/g'); echo "File buildAgent.properties was updated")
 }
