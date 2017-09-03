@@ -27,4 +27,4 @@ mv dist/buildagent/conf dist/buildagent/conf_dist
 docker build -t teamcity-minimal-agent
 ```
 
-See our [detailed instructions] (https://hub.docker.com/r/jetbrains/teamcity-minimal-agent/) on how to use the image in the Docker Hub repository .
+See our [detailed instructions](https://hub.docker.com/r/jetbrains/teamcity-minimal-agent/) on how to use the image in the Docker Hub repository .
