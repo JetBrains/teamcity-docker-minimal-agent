@@ -3,7 +3,7 @@
 
 ## TeamCity Minimal Agent Image Dockerfile
 
-This project contains the Dockerfile and all necessary scripts to build the Docker image and run a TeamCity Build Agent inside the container.
+This project contains the Dockerfiles and all necessary scripts to build the Linux and Windows Docker images and run a TeamCity Build Agent inside the container.
 
 You can pull the ready-to-use image from the Docker Hub repository
                                      
@@ -18,12 +18,14 @@ docker tag jetbrains/teamcity-base teamcity-base
 ```
 You can use your own base image with the operation system of your choice and JAVA installed. TeamCity relies on the `JRE_HOME` environment variable. Just tag your own image with the `teamcity-base` tag.
 
-2) Extract buildAgent.zip of any version you'd like to use into  the `dist/buildagent` folder and prepare agent config directory. In the same directory where the Dockerfile is placed, run
+2) On Unix extract `buildAgent.zip` of any version you'd like to use into  the `dist/buildagent` folder and prepare agent config directory. In the same directory where the Dockerfile is placed, run
 ```
 mkdir dist
 unzip buildAgent.zip -d dist/buildagent
 mv dist/buildagent/conf dist/buildagent/conf_dist
 ```
+
+On Windows just put `buildAgent.zip` into the repository root.
 
 3) Run the `docker build` command:
 ```
