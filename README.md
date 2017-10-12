@@ -11,12 +11,11 @@ You can pull the ready-to-use image from the Docker Hub repository
 
 If you need to build your own image, you need to perform the following:
 
-1) Pull our base image and re-tag it 
-```
-docker pull jetbrains/teamcity-base
-docker tag jetbrains/teamcity-base teamcity-base
-```
-You can use your own base image with the operation system of your choice and JAVA installed. TeamCity relies on the `JRE_HOME` environment variable. Just tag your own image with the `teamcity-base` tag.
+1) Create your own base image with the operation system of your choice and Java 8 installed.
+   Export `JRE_HOME` environment variable since TeamCity requires it for start.
+   [Build and tag it](https://docs.docker.com/engine/reference/commandline/build/#tag-an-image--t) with the `teamcity-base` tag.
+
+   Note: Use `teamcity-base:latest-windowsservercore` and `teamcity-base:latest-nanoserver` tags for Windows images.
 
 2) On Unix extract `buildAgent.zip` of any version you'd like to use into  the `dist/buildagent` folder and prepare agent config directory. In the same directory where the Dockerfile is placed, run
 ```
