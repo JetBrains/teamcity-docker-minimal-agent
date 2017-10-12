@@ -31,4 +31,6 @@ On Windows just put `buildAgent.zip` into the repository root.
 docker build -t teamcity-minimal-agent
 ```
 
+On Windows just execute `build.ps1` powershell script.
+
 See our [detailed instructions](https://hub.docker.com/r/jetbrains/teamcity-minimal-agent/) on how to use the image in the Docker Hub repository .
