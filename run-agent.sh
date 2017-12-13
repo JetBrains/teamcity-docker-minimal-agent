@@ -15,12 +15,18 @@ configure() {
 }
 
 reconfigure() {
-    local opts=""
-    [[ -n "${SERVER_URL}" ]] && opts="$opts --server-url ${SERVER_URL}"
-    [[ -n "${AGENT_TOKEN}" ]] && opts="$opts --auth-token ${AGENT_TOKEN}"
-    [[ -n "${AGENT_NAME}" ]]  && opts="$opts --name ${AGENT_NAME}"
-    # Using sed to strip double quotes produced by docker-compose
-    [[ -n "$opts" ]] && (configure $(echo "${opts}" | sed -e 's/""/"/g'); echo "File buildAgent.properties was updated")
+    delcare -a opts
+    [[ -n "${SERVER_URL}" ]]  && opts[${#opts[@]}]='--server-url' && opts[${#opts[@]}]="\"$SERVER_URL\""
+    [[ -n "${AGENT_TOKEN}" ]] && opts[${#opts[@]}]='--auth-token' && opts[${#opts[@]}]="\"$AGENT_TOKEN\""
+    [[ -n "${AGENT_NAME}" ]]  && opts[${#opts[@]}]='--name'       && opts[${#opts[@]}]="\"$AGENT_NAME\""
+    if [[ 0 -ne "${#opts[@]}" ]]; then
+      # Using sed to strip double quotes produced by docker-compose
+      for i in $(seq 0 $(expr ${#opts[@]} - 1)); do
+        opts[$i]="$(echo "${opts[$i]}" | sed -e 's/""/"/g')"
+      done
+      configure "${opts[@]}"
+      echo "File buildAgent.properties was updated"
+    fi
 }
 
 prepare_conf() {
