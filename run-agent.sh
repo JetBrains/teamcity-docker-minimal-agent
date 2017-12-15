@@ -9,8 +9,8 @@ check() {
 
 configure() {
   if [[ $# -gt 0 ]]; then
-    echo "run agent.sh configure" $*
-    ${AGENT_DIST}/bin/agent.sh configure $*; check
+    echo "run agent.sh configure $@"
+    ${AGENT_DIST}/bin/agent.sh configure "$@"; check
   fi
 }
 
