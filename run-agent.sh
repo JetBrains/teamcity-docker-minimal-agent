@@ -15,7 +15,7 @@ configure() {
 }
 
 reconfigure() {
-    delcare -a opts
+    declare -a opts
     [[ -n "${SERVER_URL}" ]]  && opts[${#opts[@]}]='--server-url' && opts[${#opts[@]}]="\"$SERVER_URL\""
     [[ -n "${AGENT_TOKEN}" ]] && opts[${#opts[@]}]='--auth-token' && opts[${#opts[@]}]="\"$AGENT_TOKEN\""
     [[ -n "${AGENT_NAME}" ]]  && opts[${#opts[@]}]='--name'       && opts[${#opts[@]}]="\"$AGENT_NAME\""
