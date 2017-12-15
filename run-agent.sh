@@ -16,9 +16,9 @@ configure() {
 
 reconfigure() {
     declare -a opts
-    [[ -n "${SERVER_URL}" ]]  && opts[${#opts[@]}]='--server-url' && opts[${#opts[@]}]="\"$SERVER_URL\""
-    [[ -n "${AGENT_TOKEN}" ]] && opts[${#opts[@]}]='--auth-token' && opts[${#opts[@]}]="\"$AGENT_TOKEN\""
-    [[ -n "${AGENT_NAME}" ]]  && opts[${#opts[@]}]='--name'       && opts[${#opts[@]}]="\"$AGENT_NAME\""
+    [[ -n "${SERVER_URL}" ]]  && opts[${#opts[@]}]='--server-url' && opts[${#opts[@]}]="$SERVER_URL"
+    [[ -n "${AGENT_TOKEN}" ]] && opts[${#opts[@]}]='--auth-token' && opts[${#opts[@]}]="$AGENT_TOKEN"
+    [[ -n "${AGENT_NAME}" ]]  && opts[${#opts[@]}]='--name'       && opts[${#opts[@]}]="$AGENT_NAME"
     if [[ 0 -ne "${#opts[@]}" ]]; then
       # Using sed to strip double quotes produced by docker-compose
       for i in $(seq 0 $(expr ${#opts[@]} - 1)); do
