@@ -1,4 +1,4 @@
-FROM teamcity-base:latest-windowsservercore AS build-agent
+FROM teamcity-base:latest-windowsservercore-ltsc2016 AS build-agent
 
 # Prepare build agent distribution
 COPY buildAgent.zip /
