@@ -56,9 +56,9 @@ if (Test-Path -Path "${configDir}/buildAgent.properties") {
 } else {
     Write-Host "Will create a new buildAgent.properties using distributive"
     if ($env:SERVER_URL) {
-        Write-Host "TeamCity URL is provided: ${env:SERVER_URL}"
+        Write-Host "TeamCity URL: ${env:SERVER_URL}"
     } else {
-        Write-Host "TeamCity URL is not provided, but is required."
+        Write-Host "TeamCity URL was not specified, please use SERVER_URL environment variable for that."
         exit 1
     }
     prepare_conf
