@@ -18,4 +18,4 @@ VOLUME C:/BuildAgent/conf
 
 COPY --from=build-agent /BuildAgent /BuildAgent
 
-CMD ./BuildAgent/run-agent.ps1
+CMD powershell ./BuildAgent/run-agent.ps1
