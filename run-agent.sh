@@ -29,6 +29,9 @@ reconfigure() {
       configure "${opts[@]}"
       echo "File buildAgent.properties was updated"
     fi
+    for AGENT_OPT in ${AGENT_OPTS}; do
+      echo ${AGENT_OPT} >>  ${CONFIG_DIR}/buildAgent.properties
+    done
 }
 
 prepare_conf() {
