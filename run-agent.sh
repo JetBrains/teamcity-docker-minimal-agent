@@ -66,7 +66,7 @@ else
    prepare_conf
 fi
 
-${AGENT_DIST}/bin/agent.sh start
+gosu buildagent ${AGENT_DIST}/bin/agent.sh start
 
 while [ ! -f ${LOG_DIR}/teamcity-agent.log ];
 do
