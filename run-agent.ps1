@@ -79,7 +79,7 @@ if (!(Test-Path -Path "${logDir}/teamcity-agent.log")) {
 }
 
 Trap {
-    &$agentScript stop
+    &$agentScript stop force
     exit 0
 }
 

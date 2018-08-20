@@ -74,7 +74,7 @@ do
    sleep 1
 done
 
-trap '${AGENT_DIST}/bin/agent.sh stop; while ps -p $(cat $(ls -1 ${LOG_DIR}/*.pid)) &>/dev/null; do sleep 1; done; kill %%' SIGINT SIGTERM SIGHUP
+trap '${AGENT_DIST}/bin/agent.sh stop force; while ps -p $(cat $(ls -1 ${LOG_DIR}/*.pid)) &>/dev/null; do sleep 1; done; kill %%' SIGINT SIGTERM SIGHUP
 
 tail -qF ${LOG_DIR}/teamcity-agent.log &
 wait
