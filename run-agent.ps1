@@ -54,7 +54,7 @@ if (Test-Path -Path $logDir) {
 if (Test-Path -Path "${configDir}/buildAgent.properties") {
     Write-Host "File buildAgent.properties was found in ${configDir}"
 } else {
-    Write-Host "Will create a new buildAgent.properties using distributive"
+    Write-Host "Will create a new buildAgent.properties using distribution"
     if ($env:SERVER_URL) {
         Write-Host "TeamCity URL: ${env:SERVER_URL}"
     } else {
