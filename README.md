@@ -16,8 +16,6 @@ If you need to build your own image, you need to perform the following:
    Export `JRE_HOME` environment variable since TeamCity requires it for start.
    [Build and tag it](https://docs.docker.com/engine/reference/commandline/build/#tag-an-image--t) with the `teamcity-base` tag.
 
-   Note: Use `teamcity-base:latest-nanoserver-*` tags for Windows images.
-
 2) On Unix extract `buildAgent.zip` of any version you'd like to use into  the `dist/buildagent` folder and prepare agent config directory. In the same directory where the Dockerfile is placed, run
 ```
 mkdir dist
