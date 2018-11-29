@@ -12,11 +12,7 @@ You can pull the ready-to-use image from the Docker Hub repository
 
 If you need to build your own image, you need to perform the following:
 
-1) Create your own base image with the operation system of your choice and Java 8 installed.
-   Export `JRE_HOME` environment variable since TeamCity requires it for start.
-   [Build and tag it](https://docs.docker.com/engine/reference/commandline/build/#tag-an-image--t) with the `teamcity-base` tag.
-
-2) On Unix extract `buildAgent.zip` of any version you'd like to use into  the `dist/buildagent` folder and prepare agent config directory. In the same directory where the Dockerfile is placed, run
+1) On Unix extract `buildAgent.zip` of any version you'd like to use into  the `dist/buildagent` folder and prepare agent config directory. In the same directory where the Dockerfile is placed, run
 ```
 mkdir dist
 unzip buildAgent.zip -d dist/buildagent
@@ -25,7 +21,7 @@ mv dist/buildagent/conf dist/buildagent/conf_dist
 
 On Windows just put `buildAgent.zip` into the repository root.
 
-3) Run the `docker build` command:
+2) Run the `docker build` command:
 ```
 docker build -t teamcity-minimal-agent
 ```
