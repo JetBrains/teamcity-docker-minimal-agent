@@ -48,7 +48,9 @@ CONFIG_DIR=/data/teamcity_agent/conf
 
 LOG_DIR=/opt/buildagent/logs
 
-chmod +x ${AGENT_DIST}/bin/*.sh; check; sync
+chmod +x ${AGENT_DIST}/bin/*.sh; check
+chown -R buildagent:buildagent ${AGENT_DIST}; check
+sync
 
 rm -f ${LOG_DIR}/*.pid
 
@@ -66,7 +68,7 @@ else
    prepare_conf
 fi
 
-${AGENT_DIST}/bin/agent.sh start
+gosu buildagent ${AGENT_DIST}/bin/agent.sh start
 
 while [ ! -f ${LOG_DIR}/teamcity-agent.log ];
 do
