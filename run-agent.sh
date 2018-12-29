@@ -48,7 +48,6 @@ CONFIG_DIR=/data/teamcity_agent/conf
 
 LOG_DIR=/opt/buildagent/logs
 
-check; sync
 
 rm -f ${LOG_DIR}/*.pid
 
@@ -66,7 +65,18 @@ else
    prepare_conf
 fi
 
-${AGENT_DIST}/bin/agent.sh start
+if [ -z "$RUN_AS_BUILDAGENT" -o "$RUN_AS_BUILDAGENT" = "false" -o "$RUN_AS_BUILDAGENT" = "no" ]; then
+    ${AGENT_DIST}/bin/agent.sh start
+else
+    echo "Make sure build agent directory ${AGENT_DIST} is owned by buildagent user"
+    chown -R buildagent:buildagent ${AGENT_DIST}
+    check; sync
+    
+    echo "Start build agent under buildagent user"
+    sudo -E -u buildagent HOME=/home/buildagent ${AGENT_DIST}/bin/agent.sh start
+fi
+
+
 
 while [ ! -f ${LOG_DIR}/teamcity-agent.log ];
 do
