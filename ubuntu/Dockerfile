@@ -14,7 +14,6 @@ COPY dist/buildagent /opt/buildagent
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends sudo && \
-
     useradd -m buildagent && \
     chmod +x /opt/buildagent/bin/*.sh && \
     chmod +x /run-agent.sh /run-services.sh && sync
