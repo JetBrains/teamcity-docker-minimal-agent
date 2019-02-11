@@ -3,7 +3,7 @@ FROM adoptopenjdk/openjdk8:x86_64-ubuntu-jdk8u192-b12
 MAINTAINER Kateryna Shlyakhovetska <shkate@jetbrains.com>
 
 VOLUME /data/teamcity_agent/conf
-ENV LANG C.UTF-8
+ENV LANG en_US.UTF-8
 ENV CONFIG_FILE /data/teamcity_agent/conf/buildAgent.properties
 LABEL dockerImage.teamcity.version="latest" \
       dockerImage.teamcity.buildNumber="latest"
