@@ -1,5 +1,5 @@
 ARG TAG=1803
-FROM microsoft/powershell:nanoserver-$TAG AS base
+FROM mcr.microsoft.com/powershell:nanoserver-$TAG AS base
 
 SHELL ["pwsh", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
@@ -27,7 +27,7 @@ RUN Expand-Archive buildAgent.zip -DestinationPath C:/BuildAgent ; \
     Move-Item -Path C:/BuildAgent/conf -Destination C:/BuildAgent/conf_dist
 COPY run-agent.ps1 /BuildAgent/run-agent.ps1
 
-FROM microsoft/powershell:nanoserver-$TAG
+FROM mcr.microsoft.com/powershell:nanoserver-$TAG
 
 COPY --from=base ["C:/Program Files/Java/OpenJDK", "C:/Program Files/Java/OpenJDK"]
 
