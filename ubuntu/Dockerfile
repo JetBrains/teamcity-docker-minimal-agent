@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk8:x86_64-ubuntu-jdk8u192-b12
+FROM adoptopenjdk/openjdk8:x86_64-ubuntu-jdk8u212-b03
 
 VOLUME /data/teamcity_agent/conf
 
