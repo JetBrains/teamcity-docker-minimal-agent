@@ -17,6 +17,8 @@ If you need to build your own image, you need to perform the following:
 mkdir dist
 unzip buildAgent.zip -d dist/buildagent
 mv dist/buildagent/conf dist/buildagent/conf_dist
+mv run-agent.sh ubuntu/
+mv run-services.sh ubuntu/
 ```
 
 On Windows just put `buildAgent.zip` into the repository root.
