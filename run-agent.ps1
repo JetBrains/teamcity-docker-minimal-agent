@@ -3,6 +3,14 @@ $agentScript="${agentDist}/bin/agent.bat"
 $configDir="${agentDist}/conf"
 $logDir="${agentDist}/logs"
 
+function fixDns() {
+    if($Env:USE_CUSTOM_DNS) {
+        $nic = Get-NetAdapter
+        Set-DnsClientServerAddress -InterfaceIndex $nic.IfIndex -ServerAddresses ("$Env:USE_CUSTOM_DNS")
+        Write-Host "Updated interface $nic.IfIndex to use DNS Server $Env:USE_CUSTOM_DNS"
+    }
+}
+
 function configure($options) {
     if ($options.length -eq 0) { return }
 
@@ -19,6 +27,7 @@ function unquote($value) {
 
 function reconfigure() {
     $options=@()
+    fixDns
     if ($Env:SERVER_URL) {
         $options += "--server-url"
         $options += unquote $env:SERVER_URL
