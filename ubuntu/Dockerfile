@@ -34,8 +34,6 @@ RUN update-alternatives --install /usr/bin/java java ${JRE_HOME}/bin/java 1 && \
 ##################################
 
 
-VOLUME /data/teamcity_agent/conf
-
 ENV CONFIG_FILE=/data/teamcity_agent/conf/buildAgent.properties \
     LANG=C.UTF-8
 
@@ -52,6 +50,27 @@ RUN apt-get update && \
     chmod +x /opt/buildagent/bin/*.sh && \
     chmod +x /run-agent.sh /run-services.sh && sync
 
-CMD ["/run-services.sh"]
+RUN mkdir -p /data/teamcity_agent/conf \
+    && mkdir -p /opt/buildagent/work \
+    && mkdir -p /opt/buildagent/system \
+    && mkdir -p /opt/buildagent/temp \
+    && mkdir -p /opt/buildagent/plugins \
+    && rm -Rf /opt/buildagent/plugins/* \
+    && mkdir -p /opt/buildagent/logs \
+    && mkdir -p /opt/buildagent/tools \
+    && chown -R buildagent:buildagent /data/teamcity_agent/ \
+    && chown -R buildagent:buildagent /opt/buildagent \
+    && chown buildagent:buildagent /run-agent.sh \
+    && chown buildagent:buildagent /run-services.sh \
+    && chmod +x /opt/buildagent/bin/*.sh
 
-EXPOSE 9090
+VOLUME /data/teamcity_agent/conf
+VOLUME /opt/buildagent/work
+VOLUME /opt/buildagent/system
+VOLUME /opt/buildagent/temp
+VOLUME /opt/buildagent/logs
+VOLUME /opt/buildagent/tools
+
+USER buildagent
+
+CMD ["/run-services.sh"]
