@@ -70,6 +70,7 @@ VOLUME /opt/buildagent/system
 VOLUME /opt/buildagent/temp
 VOLUME /opt/buildagent/logs
 VOLUME /opt/buildagent/tools
+VOLUME /opt/buildagent/plugins
 
 USER buildagent
 
