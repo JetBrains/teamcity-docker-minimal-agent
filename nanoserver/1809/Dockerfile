@@ -2,6 +2,9 @@ FROM mcr.microsoft.com/powershell:nanoserver-1809 AS base
 
 SHELL ["pwsh", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
+# In order to write to C:\, ContainerAdministrator must be used
+USER ContainerAdministrator
+
 # Install JRE
 RUN [Net.ServicePointManager]::SecurityProtocol = 'tls12, tls11, tls' ; \
     Invoke-WebRequest https://corretto.aws/downloads/resources/8.272.10.3/amazon-corretto-8.272.10.3-windows-x64-jre.zip -OutFile jre.zip; \
